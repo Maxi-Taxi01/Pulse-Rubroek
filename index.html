@@ -59,6 +59,33 @@
   .nav-links a:hover, .nav-links a.active {
     background: var(--bg-warm); color: var(--red);
   }
+  .nav-dropdown {
+    position: relative;
+  }
+  .nav-dropdown > span {
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    cursor: pointer; transition: all 0.2s; user-select: none;
+  }
+  .nav-dropdown:hover > span,
+  .nav-dropdown > span:hover {
+    background: var(--bg-warm); color: var(--red);
+  }
+  .nav-dropdown .dropdown-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    background: #fff; border-radius: 12px; padding: 6px 0;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12); min-width: 160px;
+    z-index: 1001; margin-top: 4px;
+  }
+  .nav-dropdown:hover .dropdown-menu { display: block; }
+  .nav-dropdown .dropdown-menu a {
+    display: block; padding: 8px 18px; border-radius: 0;
+    font-size: 12px; white-space: nowrap;
+  }
+  .nav-dropdown .dropdown-menu a:hover {
+    background: var(--bg-warm); color: var(--red);
+  }
+
   .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .nav-hamburger svg { width: 24px; height: 24px; stroke: var(--text); }
 
@@ -72,6 +99,12 @@
     .nav-links.open { display: flex; }
     .nav-links a { padding: 12px 16px; border-radius: 12px; font-size: 14px; }
     .nav-hamburger { display: block; }
+    .nav-dropdown .dropdown-menu {
+      position: static; box-shadow: none; margin-top: 0;
+      padding-left: 16px; display: none;
+    }
+    .nav-dropdown.open .dropdown-menu { display: block; }
+    .nav-dropdown > span { padding: 12px 16px; font-size: 14px; display: block; }
   }
 
   /* ── HERO ── */
@@ -377,6 +410,13 @@
     <a href="#organisaties">Organisaties</a>
     <a href="#aanpak">Aanpak</a>
     <a href="#coalitie">Coalitie</a>
+    <div class="nav-dropdown" onclick="this.classList.toggle('open')">
+      <span>Interviews &#9662;</span>
+      <div class="dropdown-menu">
+        <a href="#jongeren">Jongeren</a>
+        <a href="ouderen-interviews.html">Ouderen</a>
+      </div>
+    </div>
   </div>
 </nav>
 
