@@ -161,6 +161,21 @@
   .cat-title { font-weight: 600; font-size: 15px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
   .chart-wrap { position: relative; width: 100%; max-width: 100%; }
   .chart-wrap canvas { width: 100% !important; }
+  .map-atlas-card { padding: 0; overflow: hidden; }
+  .map-atlas-header {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    padding: 18px 22px; border-bottom: 1px solid var(--border);
+  }
+  .map-atlas-header a {
+    flex-shrink: 0; color: var(--emerald700); font-size: 13px; font-weight: 700;
+    text-decoration: none;
+  }
+  .map-atlas-header a:hover { text-decoration: underline; }
+  .map-atlas-frame { display: block; width: 100%; height: 760px; border: 0; background: #fff; }
+  @media (max-width: 768px) {
+    .map-atlas-header { align-items: flex-start; flex-direction: column; }
+    .map-atlas-frame { height: 680px; }
+  }
 
 </style>
 </head>
@@ -199,6 +214,7 @@
     <button class="tab-btn" data-tab="cluster">Clusteranalyse</button>
     <button class="tab-btn" data-tab="conclusies">Conclusies</button>
     <button class="tab-btn" data-tab="ontwerp">Ontwerpvertaling</button>
+    <button class="tab-btn" data-tab="systeemkaarten">Systeemkaarten</button>
   </div>
 </div>
 
@@ -289,6 +305,27 @@
   <div class="card card-advice" style="margin-top:20px;">
     <div style="font-weight:600;color:var(--emerald700);margin-bottom:8px;font-size:16px;">Kernadvies</div>
     <p style="font-size:14px;color:#475569;line-height:1.7;">De grootste kans voor het project zit niet alleen in het verbeteren van losse buitenplekken, maar in het <strong>creëren van een plek waar ontmoeting, rust en activiteit samenkomen</strong> — nabij bestaande voorzieningen, aan een groene route, en dichtbij de WijkHub. Gebruik interview 3, 4 en 5 als kern van de ouderenanalyse.</p>
+  </div>
+</div>
+
+<!-- ===== SYSTEEMKAARTEN ===== -->
+<div class="panel" id="systeemkaarten">
+  <div class="section-title">Individuele systeemkaarten</div>
+  <div class="section-sub">Interactieve atlas met de gecombineerde kaart en kaarten per geïnterviewde</div>
+  <div class="card map-atlas-card">
+    <div class="map-atlas-header">
+      <div>
+        <strong>Bewoners en zorgprofessionals</strong>
+        <div class="section-sub" style="margin:4px 0 0;">Kies een persoon, bekijk relaties en download de zichtbare kaart als SVG.</div>
+      </div>
+      <a href="individual-system-maps/index.html" target="_blank" rel="noopener">Open volledig scherm &rarr;</a>
+    </div>
+    <iframe
+      class="map-atlas-frame"
+      src="individual-system-maps/index.html"
+      loading="lazy"
+      title="Individuele systeemkaarten uit de interviews"
+    ></iframe>
   </div>
 </div>
 
