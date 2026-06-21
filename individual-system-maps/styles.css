@@ -1,13 +1,13 @@
 :root {
   color-scheme: light;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --ink: #243048;
-  --muted: #657089;
-  --navy: #354273;
-  --aqua: #20cdb9;
+  --ink: #1a1a2e;
+  --muted: #555555;
+  --navy: #2b3990;
+  --aqua: #e31e24;
   --surface: #ffffff;
   --line: #a8b2bf;
-  --danger: #dc5a55;
+  --danger: #e31e24;
 }
 
 * {
@@ -18,7 +18,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  background: #f4f5f8;
+  background: #fafafa;
   color: var(--ink);
 }
 
@@ -66,7 +66,7 @@ select {
 .atlas-controls select,
 .atlas-controls button {
   min-height: 42px;
-  border: 1px solid #d7dbe5;
+  border: 1px solid #dfe1e9;
   border-radius: 10px;
   background: white;
   color: var(--ink);
@@ -91,7 +91,7 @@ select {
   overflow: auto;
   border-radius: 20px;
   background: white;
-  box-shadow: 0 18px 55px rgba(36, 48, 72, 0.13);
+  box-shadow: 0 18px 55px rgba(43, 57, 144, 0.12);
 }
 
 .map-stage svg {
@@ -113,9 +113,9 @@ select {
 .map-node:hover .node-card,
 .map-node:focus .node-card,
 .map-node.selected .node-card {
-  stroke: #20a995;
+  stroke: #e31e24;
   stroke-width: 3;
-  filter: drop-shadow(0 5px 8px rgba(32, 169, 149, 0.2));
+  filter: drop-shadow(0 5px 8px rgba(227, 30, 36, 0.18));
 }
 
 .map-stage .map-node,
@@ -139,7 +139,7 @@ select {
 }
 
 .map-stage.connection-focus .map-node.connection-active .node-card {
-  stroke: #20a995;
+  stroke: #e31e24;
   stroke-width: 2.5;
 }
 
@@ -179,7 +179,7 @@ select {
 
 .detail-kicker {
   margin: 0 42px 6px 0;
-  color: #0a9f8f;
+  color: #e31e24;
   font-size: 0.7rem;
   font-weight: 850;
   letter-spacing: 0.055em;
@@ -203,14 +203,14 @@ select {
 .detail-context {
   margin: 0 0 18px;
   padding: 13px 14px;
-  border-left: 4px solid #5669c8;
+  border-left: 4px solid #2b3990;
   border-radius: 9px;
-  background: #f0f2fb;
+  background: #eef0f8;
 }
 
 .detail-context h3 {
   margin: 0 0 7px;
-  color: #5669c8;
+  color: #2b3990;
   font-size: 0.72rem;
   font-weight: 850;
   letter-spacing: 0.04em;
@@ -277,7 +277,7 @@ select {
 
 .detail-relations li {
   padding: 9px 11px;
-  border-left: 4px solid #16a28f;
+  border-left: 4px solid #8dc63f;
   border-radius: 7px;
   background: #f6f8fa;
   color: #4b5870;
@@ -286,7 +286,7 @@ select {
 }
 
 .detail-relations li.negative {
-  border-left-color: #dc5a55;
+  border-left-color: #e31e24;
 }
 
 .detail-source {
@@ -315,7 +315,7 @@ select {
 
 .map-index button.active {
   border-color: var(--aqua);
-  box-shadow: inset 0 0 0 2px rgba(32, 205, 185, 0.18);
+  box-shadow: inset 0 0 0 2px rgba(227, 30, 36, 0.16);
 }
 
 .map-index span {

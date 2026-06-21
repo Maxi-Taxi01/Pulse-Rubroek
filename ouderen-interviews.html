@@ -6,14 +6,17 @@
 <title>Rubroek — Interviewanalyse Ouderen</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
   :root {
-    --green: #22c55e; --red: #ef4444; --blue: #3b82f6; --amber: #f59e0b;
-    --purple: #8b5cf6; --teal: #14b8a6; --orange: #f97316; --pink: #ec4899;
-    --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --muted: #64748b;
-    --border: #e2e8f0; --emerald700: #047857; --emerald900: #064e3b;
+    --red: #E31E24; --blue: #2B3990; --green: #8DC63F; --amber: #8DC63F;
+    --purple: #E31E24; --teal: #378ADD; --orange: #D85A30; --pink: #D4537E;
+    --bg: #FAFAFA; --bg-warm: #FAE8E8; --bg-cool: #EEF0F8;
+    --card: #ffffff; --text: #1a1a2e; --muted: #555;
+    --border: #e2e3ea; --shadow: 0 4px 24px rgba(0,0,0,0.08);
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
 
   /* ── NAV ── */
   nav#navbar {
@@ -82,27 +85,37 @@
     .nav-dropdown > span { padding: 12px 16px; font-size: 14px; display: block; }
   }
 
-  .header { background: linear-gradient(135deg, var(--emerald700), var(--emerald900)); color: #fff; padding: 88px 32px 16px; }
-  .header h1 { font-size: 26px; font-weight: 700; }
-  .header .sub { color: #a7f3d0; font-size: 13px; margin-top: 4px; }
+  .header {
+    background: linear-gradient(160deg, var(--bg-warm) 0%, #fff 52%, var(--bg-cool) 100%);
+    color: var(--text); padding: 92px 32px 22px;
+    border-top: 4px solid var(--red);
+    border-bottom: 1px solid rgba(43,57,144,0.08);
+  }
+  .header h1 { color: var(--blue); font-size: 28px; font-weight: 800; letter-spacing: -0.5px; }
+  .header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
   .tabs { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
-  .tab-btn { background: rgba(255,255,255,0.12); color: #fff; border: none; padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; }
-  .tab-btn:hover { background: rgba(255,255,255,0.25); }
-  .tab-btn.active { background: #fff; color: var(--emerald700); box-shadow: 0 2px 8px rgba(0,0,0,.12); }
+  .tab-btn {
+    background: rgba(255,255,255,0.82); color: var(--blue);
+    border: 1px solid rgba(43,57,144,0.12); padding: 9px 18px;
+    border-radius: 20px; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: all .2s; box-shadow: 0 2px 8px rgba(43,57,144,.05);
+  }
+  .tab-btn:hover { background: var(--bg-warm); color: var(--red); border-color: rgba(227,30,36,.18); }
+  .tab-btn.active { background: var(--red); color: #fff; border-color: var(--red); box-shadow: 0 4px 16px rgba(227,30,36,.22); }
 
   .container { max-width: 1140px; margin: 0 auto; padding: 28px 24px; }
   .panel { display: none; }
   .panel.active { display: block; }
 
-  .card { background: var(--card); border-radius: 14px; box-shadow: 0 1px 6px rgba(0,0,0,.06); padding: 22px; margin-bottom: 16px; }
+  .card { background: var(--card); border: 1px solid rgba(43,57,144,.06); border-radius: 16px; box-shadow: var(--shadow); padding: 22px; margin-bottom: 16px; }
   .card-green { border-left: 4px solid var(--green); }
   .card-red { border-left: 4px solid var(--red); }
   .card-blue { border-top: 4px solid var(--blue); }
   .card-purple { border-top: 4px solid var(--purple); }
   .card-amber { border-top: 4px solid var(--amber); }
-  .card-advice { background: linear-gradient(135deg, #ecfdf5, #eff6ff); border: 1px solid #a7f3d0; }
+  .card-advice { background: linear-gradient(135deg, var(--bg-warm), var(--bg-cool)); border: 1px solid rgba(227,30,36,.15); }
 
-  .section-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .section-title { color: var(--blue); font-size: 20px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.25px; }
   .section-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -111,15 +124,15 @@
   .grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
   @media (max-width: 900px) { .grid-2, .grid-3, .grid-5, .grid-2-1 { grid-template-columns: 1fr; } }
 
-  .iv-card { border: 2px solid var(--border); border-radius: 12px; padding: 16px; cursor: pointer; transition: all .2s; }
+  .iv-card { background: #fff; border: 2px solid var(--border); border-radius: 14px; padding: 16px; cursor: pointer; transition: all .2s; }
   .iv-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,.08); }
-  .iv-card.selected { border-color: var(--green); background: #f0fdf4; box-shadow: 0 4px 16px rgba(34,197,94,.15); }
-  .iv-card.kern { border-color: #bbf7d0; }
+  .iv-card.selected { border-color: var(--red); background: var(--bg-warm); box-shadow: 0 4px 16px rgba(227,30,36,.14); }
+  .iv-card.kern { border-color: rgba(43,57,144,.24); }
   .iv-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
   .iv-id { font-size: 18px; font-weight: 700; color: var(--muted); }
   .badge { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
-  .badge-kern { background: #dcfce7; color: #166534; }
-  .badge-aanv { background: #dbeafe; color: #1e40af; }
+  .badge-kern { background: var(--bg-warm); color: var(--red); }
+  .badge-aanv { background: var(--bg-cool); color: var(--blue); }
   .badge-beperkt { background: #f1f5f9; color: #475569; }
   .iv-profiel { font-size: 12px; color: var(--muted); line-height: 1.4; }
   .detail { display: none; margin-top: 16px; }
@@ -143,16 +156,16 @@
   .cluster-title { font-size: 14px; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
   .cluster-title .dot-lg { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
   .score-badge { font-size: 12px; padding: 2px 10px; border-radius: 20px; font-weight: 700; }
-  .score-good { background: #dcfce7; color: #166534; }
+  .score-good { background: #eef6e4; color: #4f741e; }
   .score-mid { background: #fef3c7; color: #92400e; }
   .score-bad { background: #fee2e2; color: #991b1b; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   .tag { font-size: 11px; padding: 3px 10px; border-radius: 20px; }
-  .tag-green { background: #f0fdf4; color: #166534; }
-  .tag-red { background: #fef2f2; color: #991b1b; }
+  .tag-green { background: #eef6e4; color: #4f741e; }
+  .tag-red { background: var(--bg-warm); color: #a5161b; }
   .place-header { display: flex; justify-content: space-between; align-items: center; }
   .concl-card { display: flex; gap: 16px; align-items: flex-start; }
-  .concl-num { width: 42px; height: 42px; border-radius: 50%; background: #dcfce7; color: var(--emerald700); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; flex-shrink: 0; }
+  .concl-num { width: 42px; height: 42px; border-radius: 50%; background: var(--bg-warm); color: var(--red); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; flex-shrink: 0; }
   .concl-title { font-weight: 600; font-size: 15px; }
   .concl-text { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
   .criteria-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; }
@@ -167,7 +180,7 @@
     padding: 18px 22px; border-bottom: 1px solid var(--border);
   }
   .map-atlas-header a {
-    flex-shrink: 0; color: var(--emerald700); font-size: 13px; font-weight: 700;
+    flex-shrink: 0; color: var(--red); font-size: 13px; font-weight: 700;
     text-decoration: none;
   }
   .map-atlas-header a:hover { text-decoration: underline; }
@@ -303,7 +316,7 @@
     </div>
   </div>
   <div class="card card-advice" style="margin-top:20px;">
-    <div style="font-weight:600;color:var(--emerald700);margin-bottom:8px;font-size:16px;">Kernadvies</div>
+    <div style="font-weight:700;color:var(--red);margin-bottom:8px;font-size:16px;">Kernadvies</div>
     <p style="font-size:14px;color:#475569;line-height:1.7;">De grootste kans voor het project zit niet alleen in het verbeteren van losse buitenplekken, maar in het <strong>creëren van een plek waar ontmoeting, rust en activiteit samenkomen</strong> — nabij bestaande voorzieningen, aan een groene route, en dichtbij de WijkHub. Gebruik interview 3, 4 en 5 als kern van de ouderenanalyse.</p>
   </div>
 </div>
@@ -341,13 +354,13 @@ const interviews = [
   { id:5, profiel:"40 jaar in de wijk", groen:"Park midden-zuiden, Boezemsingel", groenW:"Rustig, bankjes, groen, water, nabij WijkHub", rood:"Ammanplein, kruising ZO", roodW:"Vervallen, druk, lastig met rollator", mist:"Ontmoetingsplek, overdekte zitplek", opm:"Sterk oudereninterview", brk:"Kern" }
 ];
 const themas = [
-  { thema:"Groen & rust", n:3, ids:"2, 4, 5", icon:"\u{1F33F}", color:"#22c55e" },
-  { thema:"Bankjes & rustpunten", n:3, ids:"3, 4, 5", icon:"\u{1FA91}", color:"#3b82f6" },
-  { thema:"Bereikbaarheid", n:2, ids:"3, 5", icon:"\u{1F6B6}", color:"#14b8a6" },
-  { thema:"Verkeersveiligheid", n:2, ids:"4, 5", icon:"\u26A0\uFE0F", color:"#f59e0b" },
-  { thema:"Avondveiligheid", n:1, ids:"3", icon:"\u{1F319}", color:"#8b5cf6" },
-  { thema:"Onderhoud", n:3, ids:"3, 5, 1", icon:"\u{1F9F9}", color:"#f97316" },
-  { thema:"Ontmoeting", n:4, ids:"1, 3, 4, 5", icon:"\u{1F91D}", color:"#ec4899" }
+  { thema:"Groen & rust", n:3, ids:"2, 4, 5", icon:"\u{1F33F}", color:"#8DC63F" },
+  { thema:"Bankjes & rustpunten", n:3, ids:"3, 4, 5", icon:"\u{1FA91}", color:"#2B3990" },
+  { thema:"Bereikbaarheid", n:2, ids:"3, 5", icon:"\u{1F6B6}", color:"#378ADD" },
+  { thema:"Verkeersveiligheid", n:2, ids:"4, 5", icon:"\u26A0\uFE0F", color:"#EF9F27" },
+  { thema:"Avondveiligheid", n:1, ids:"3", icon:"\u{1F319}", color:"#7F77DD" },
+  { thema:"Onderhoud", n:3, ids:"3, 5, 1", icon:"\u{1F9F9}", color:"#D85A30" },
+  { thema:"Ontmoeting", n:4, ids:"1, 3, 4, 5", icon:"\u{1F91D}", color:"#E31E24" }
 ];
 const sterke = [
   { naam:"Oostplein", tags:["Nabijheid markt/metro/Meent","Levendig maar niet storend","Goed bereikbaar"], score:4.2 },
@@ -428,12 +441,12 @@ renderPlaces(probleem,'probleem-list','tag-red');
 new Chart(document.getElementById('radarChart'), {
   type:'radar', data:{ labels:['Groen','Rust','Bankjes','Bereikbaar','Veiligheid','Sfeer'],
   datasets:[
-    {label:'Oostplein',data:[3,3,3,5,4,4],borderColor:'#3b82f6',backgroundColor:'#3b82f618',borderWidth:2,pointRadius:3,pointBackgroundColor:'#3b82f6'},
-    {label:'Park',data:[5,5,5,4,4,5],borderColor:'#22c55e',backgroundColor:'#22c55e18',borderWidth:2,pointRadius:3,pointBackgroundColor:'#22c55e'},
-    {label:'Boezemsingel',data:[4,5,4,3,4,4],borderColor:'#14b8a6',backgroundColor:'#14b8a618',borderWidth:2,pointRadius:3,pointBackgroundColor:'#14b8a6'},
-    {label:'Boezemweg',data:[1,2,1,3,2,1],borderColor:'#ef4444',backgroundColor:'#ef444418',borderWidth:2,borderDash:[5,5],pointRadius:3,pointBackgroundColor:'#ef4444'},
-    {label:'Goudsesingel',data:[1,1,1,4,1,2],borderColor:'#f97316',backgroundColor:'#f9731618',borderWidth:2,borderDash:[5,5],pointRadius:3,pointBackgroundColor:'#f97316'},
-    {label:'Ammanplein',data:[1,2,1,3,2,1],borderColor:'#ec4899',backgroundColor:'#ec489918',borderWidth:2,borderDash:[5,5],pointRadius:3,pointBackgroundColor:'#ec4899'}
+    {label:'Oostplein',data:[3,3,3,5,4,4],borderColor:'#2B3990',backgroundColor:'#2B399018',borderWidth:2,pointRadius:3,pointBackgroundColor:'#2B3990'},
+    {label:'Park',data:[5,5,5,4,4,5],borderColor:'#8DC63F',backgroundColor:'#8DC63F18',borderWidth:2,pointRadius:3,pointBackgroundColor:'#8DC63F'},
+    {label:'Boezemsingel',data:[4,5,4,3,4,4],borderColor:'#378ADD',backgroundColor:'#378ADD18',borderWidth:2,pointRadius:3,pointBackgroundColor:'#378ADD'},
+    {label:'Boezemweg',data:[1,2,1,3,2,1],borderColor:'#E31E24',backgroundColor:'#E31E2418',borderWidth:2,borderDash:[5,5],pointRadius:3,pointBackgroundColor:'#E31E24'},
+    {label:'Goudsesingel',data:[1,1,1,4,1,2],borderColor:'#D85A30',backgroundColor:'#D85A3018',borderWidth:2,borderDash:[5,5],pointRadius:3,pointBackgroundColor:'#D85A30'},
+    {label:'Ammanplein',data:[1,2,1,3,2,1],borderColor:'#D4537E',backgroundColor:'#D4537E18',borderWidth:2,borderDash:[5,5],pointRadius:3,pointBackgroundColor:'#D4537E'}
   ]},
   options:{ responsive:true, scales:{r:{min:0,max:5,ticks:{stepSize:1,font:{size:10}},pointLabels:{font:{size:12}}}}, plugins:{legend:{position:'bottom',labels:{font:{size:11},usePointStyle:true,pointStyle:'circle'}}} }
 });
@@ -443,7 +456,7 @@ const conclList=document.getElementById('concl-list');
 conclusies.forEach(c=>{ conclList.innerHTML+=`<div class="card concl-card"><div class="concl-num">${c.nr}</div><div><div class="concl-title">${c.t}</div><div class="concl-text">${c.txt}</div></div></div>`; });
 new Chart(document.getElementById('pieChart'), {
   type:'doughnut', data:{ labels:['Ontmoetingsplek','Meer bankjes','Overdekte zitplek','Sociale vastigheid','Activiteiten'],
-  datasets:[{data:[4,3,2,2,2],backgroundColor:['#8b5cf6','#3b82f6','#14b8a6','#f59e0b','#ec4899'],borderWidth:2,borderColor:'#fff'}]},
+  datasets:[{data:[4,3,2,2,2],backgroundColor:['#E31E24','#2B3990','#378ADD','#8DC63F','#D4537E'],borderWidth:2,borderColor:'#fff'}]},
   options:{responsive:true,cutout:'50%',plugins:{legend:{position:'bottom',labels:{font:{size:11},usePointStyle:true,pointStyle:'circle'}}}}
 });
 
