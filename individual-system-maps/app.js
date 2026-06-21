@@ -26,9 +26,9 @@
   if (exportMode) document.body.classList.add("export-mode");
 
   const tones = {
-    strength: { fill: "#e4f4ef", accent: "#0aa795", line: "#7f9d98" },
-    relation: { fill: "#e7e9f7", accent: "#5669c8", line: "#8d95bb" },
-    barrier: { fill: "#f8e3e1", accent: "#dc5a55", line: "#dc5a55" },
+    strength: { fill: "#eef6e4", accent: "#78a934", line: "#8fa76e" },
+    relation: { fill: "#eef0f8", accent: "#2b3990", line: "#8d95bb" },
+    barrier: { fill: "#fae8e8", accent: "#e31e24", line: "#e31e24" },
     opportunity: { fill: "#f9efd3", accent: "#e69b20", line: "#a99366" }
   };
 
@@ -77,7 +77,7 @@
     const {
       size = 14,
       weight = 500,
-      fill = "#243048",
+      fill = "#1a1a2e",
       lineHeight = size * 1.25,
       anchor = "start",
       family = "Inter, Segoe UI, sans-serif",
@@ -133,7 +133,7 @@
     return `<path class="map-connection center-connection" data-source="${escapeXml(
       node.code
     )}" data-target="CENTRALE_VARIABELE" d="M ${sx} ${sy} Q ${mx} ${my} ${tx} ${ty}" fill="none" stroke="${
-      negative ? "#dc5a55" : accent
+      negative ? "#e31e24" : accent
     }" stroke-width="${negative ? 2.5 : 2.2}" stroke-opacity="${negative ? 0.72 : 0.48}" ${
       negative ? 'stroke-dasharray="8 7"' : ""
     } marker-end="url(#arrow-${negative ? "negative" : "positive"})"/>`;
@@ -158,7 +158,7 @@
     const lx = 0.25 * sx + 0.5 * cx + 0.25 * tx;
     const ly = 0.25 * sy + 0.5 * cy + 0.25 * ty;
     const negative = link.polarity === "negative";
-    const color = negative ? "#c94b47" : "#148b7f";
+    const color = negative ? "#e31e24" : "#6f9d2d";
     const labelWidth = Math.max(54, link.label.length * 6.4 + 18);
     return `
       <g class="map-connection cross-connection" data-source="${escapeXml(
@@ -297,13 +297,13 @@
     const leverage = wrapText(map.leverage, 46, 2);
     return `
       <g>
-        <rect x="${center.x + 11}" y="${center.y + 13}" width="${center.w}" height="${center.h}" rx="24" fill="#202b42" opacity="0.18"/>
-        <rect x="${center.x}" y="${center.y}" width="${center.w}" height="${center.h}" rx="24" fill="#354273"/>
-        <rect x="${center.x}" y="${center.y}" width="${center.w}" height="9" rx="5" fill="#20cdb9"/>
+        <rect x="${center.x + 11}" y="${center.y + 13}" width="${center.w}" height="${center.h}" rx="24" fill="#1a1a2e" opacity="0.18"/>
+        <rect x="${center.x}" y="${center.y}" width="${center.w}" height="${center.h}" rx="24" fill="#2b3990"/>
+        <rect x="${center.x}" y="${center.y}" width="${center.w}" height="9" rx="5" fill="#e31e24"/>
         ${textLines(["CENTRALE VARIABELE"], center.x + 28, center.y + 34, {
           size: 10.5,
           weight: 850,
-          fill: "#7ce6d9"
+          fill: "#fae8e8"
         })}
         ${textLines(title, center.x + 28, center.y + 62, {
           size: 19,
@@ -317,11 +317,11 @@
           fill: "#dfe5f2",
           lineHeight: 12.5
         })}
-        <rect x="${center.x + 20}" y="${center.y + center.h - 74}" width="${center.w - 40}" height="58" rx="12" fill="#20cdb9" opacity="0.18"/>
+        <rect x="${center.x + 20}" y="${center.y + center.h - 74}" width="${center.w - 40}" height="58" rx="12" fill="#e31e24" opacity="0.2"/>
         ${textLines(["HEFBOOM"], center.x + 32, center.y + center.h - 53, {
           size: 9.5,
           weight: 850,
-          fill: "#7ce6d9"
+          fill: "#fae8e8"
         })}
         ${textLines(leverage, center.x + 32, center.y + center.h - 35, {
           size: 10.3,
@@ -390,7 +390,7 @@
       ? textLines([map.privacy], 1750, 1087, {
           size: 10.5,
           weight: 700,
-          fill: "#b84743",
+          fill: "#a5161b",
           anchor: "end",
           italic: true
         })
@@ -405,26 +405,26 @@
             <path d="M 0 0 L 8 4 L 0 8 z" fill="#81909f" opacity="0.65"/>
           </marker>
           <marker id="arrow-negative" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M 0 0 L 8 4 L 0 8 z" fill="#dc5a55" opacity="0.85"/>
+            <path d="M 0 0 L 8 4 L 0 8 z" fill="#e31e24" opacity="0.85"/>
           </marker>
           <marker id="cross-positive" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-            <path d="M 0 0 L 9 4.5 L 0 9 z" fill="#148b7f"/>
+            <path d="M 0 0 L 9 4.5 L 0 9 z" fill="#6f9d2d"/>
           </marker>
           <marker id="cross-negative" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto">
-            <path d="M 0 0 L 9 4.5 L 0 9 z" fill="#c94b47"/>
+            <path d="M 0 0 L 9 4.5 L 0 9 z" fill="#e31e24"/>
           </marker>
         </defs>
-        <rect width="1800" height="1120" fill="#f7f8fa"/>
-        <rect width="1800" height="12" fill="#4b57b7"/>
+        <rect width="1800" height="1120" fill="#fafafa"/>
+        <rect width="1800" height="12" fill="#e31e24"/>
         ${textLines([`${map.id.startsWith("alle-interviews") ? "GEÏNTEGREERDE" : "INDIVIDUELE"} SYSTEEMKAART · ${map.group.toUpperCase()}`], 52, 42, {
           size: 11,
           weight: 900,
-          fill: "#0aa795"
+          fill: "#e31e24"
         })}
         ${textLines([map.name], 52, 81, {
           size: 34,
           weight: 850,
-          fill: "#253047"
+          fill: "#1a1a2e"
         })}
         ${textLines([map.subtitle], 52, 108, {
           size: 14,
@@ -445,11 +445,11 @@
         ${centerMarkup(map, center)}
         <g transform="translate(52 1030)">
           <rect width="1696" height="62" rx="18" fill="#ffffff" stroke="#dde2ea"/>
-          <circle cx="29" cy="23" r="7" fill="#148b7f"/>
+          <circle cx="29" cy="23" r="7" fill="#6f9d2d"/>
           ${textLines(["ondersteunt / maakt mogelijk"], 44, 27, { size: 11, weight: 700, fill: "#526078" })}
           <line x1="252" y1="23" x2="302" y2="23" stroke="#8d99a7" stroke-width="2.4" marker-end="url(#arrow-positive)"/>
           ${textLines(["invloed op centrale variabele"], 318, 27, { size: 11, weight: 700, fill: "#526078" })}
-          <line x1="568" y1="23" x2="618" y2="23" stroke="#dc5a55" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow-negative)"/>
+          <line x1="568" y1="23" x2="618" y2="23" stroke="#e31e24" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow-negative)"/>
           ${textLines(["remt / vergroot kwetsbaarheid"], 634, 27, { size: 11, weight: 700, fill: "#526078" })}
           ${textLines(["Interpretatie op basis van gecodeerde interviewanalyse; geen klinische beoordeling."], 1664, 27, {
             size: 10.5,
